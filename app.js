@@ -16,7 +16,7 @@ start.addEventListener('click', () => {
 })
 
 stop.addEventListener('click', () => {
-    
+    clearInterval(timerInterval);
 })
 
 reset.addEventListener('click', () => {
@@ -37,13 +37,13 @@ function convertTimeToString(time) {
     let m = Math.floor(minDiff);
 
     let secDiff = (minDiff - m) * 60;
-    let s = Math.floor(secDiff) * 60;
+    let s = Math.floor(secDiff);
 
     let msDiff = (secDiff - s) * 100;
     let ms = Math.floor(msDiff);
 
     return `
-        ${m.toString().padStart(2, "0")}:
+        ${m.toString().padStart(2,"0")}:
         ${s.toString().padStart(2,"0")}:
         ${ms.toString().padStart(2,"0")}
     `
