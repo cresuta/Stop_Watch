@@ -1,6 +1,8 @@
 const start = document.querySelector('.btn-start');
 const stop = document.querySelector('.btn-stop');
 const reset = document.querySelector('.btn-reset');
+const lap = document.querySelector('.btn-lap');
+const lapDisplay = document.querySelector('lapDisplay');
 const timer = document.querySelector('.timer');
 
 let startTime;
@@ -13,6 +15,12 @@ start.addEventListener('click', () => {
         elapsedTime = Date.now() - startTime;
         displayTimer(convertTimeToString(elapsedTime));
     }, 10);
+})
+
+lap.addEventListener('click', () => {
+    if (timer.innerHTML != '00:00:00') {
+        const li = document.createElement('li');
+    }
 })
 
 stop.addEventListener('click', () => {
