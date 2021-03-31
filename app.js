@@ -8,8 +8,13 @@ const timer = document.querySelector('.timer');
 let startTime;
 let elapsedTime = 0;
 let timerInterval;
+let isRunning;
 
-start.addEventListener('click', () => {
+start.addEventListener('click', (e) => {
+    if(isRunning) {
+        throw new Error('Stopwatch has already started')
+    }
+    isRunning = true;
     startTime = Date.now() - elapsedTime;
     timerInterval = setInterval(() => {
         elapsedTime = Date.now() - startTime;
@@ -20,10 +25,12 @@ start.addEventListener('click', () => {
 lap.addEventListener('click', () => {
     if (timer.innerHTML != '00:00:00') {
         const li = document.createElement('li');
+
     }
 })
 
 stop.addEventListener('click', () => {
+    isRunning = false;
     clearInterval(timerInterval);
 })
 
