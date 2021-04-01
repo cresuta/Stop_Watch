@@ -3,6 +3,7 @@ const stop = document.querySelector('.btn-stop');
 const reset = document.querySelector('.btn-reset');
 const lap = document.querySelector('.btn-lap');
 const lapDisplay = document.querySelector('.lapDisplay');
+let lapCount = 0;
 const timer = document.querySelector('.timer');
 
 
@@ -25,8 +26,9 @@ start.addEventListener('click', () => {
 
 lap.addEventListener('click', () => {
     if (timer.innerHTML !== '00:00:00') {
+        lapCount += 1;
         let li = document.createElement('li');
-        li.innerText = timer.innerHTML
+        li.innerText = `Lap ${lapCount} (${timer.innerHTML})`;
         lapDisplay.appendChild(li);
     }
 })
@@ -40,6 +42,7 @@ reset.addEventListener('click', () => {
     clearInterval(timerInterval);
     displayTimer('00:00:00');
     elapsedTime = 0;
+    lapCount = 0;
     lapDisplay.innerHTML = '';
 })
 
@@ -61,8 +64,6 @@ function convertTimeToString(time) {
     let ms = Math.floor(msDiff);
 
     return `
-        ${m.toString().padStart(2,"0")}:
-        ${s.toString().padStart(2,"0")}:
-        ${ms.toString().padStart(2,"0")}
+        ${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}:${ms.toString().padStart(2,"0")}
     `
 }
