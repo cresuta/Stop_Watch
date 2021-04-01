@@ -2,15 +2,16 @@ const start = document.querySelector('.btn-start');
 const stop = document.querySelector('.btn-stop');
 const reset = document.querySelector('.btn-reset');
 const lap = document.querySelector('.btn-lap');
-const lapDisplay = document.querySelector('lapDisplay');
+const lapDisplay = document.querySelector('.lapDisplay');
 const timer = document.querySelector('.timer');
+
 
 let startTime;
 let elapsedTime = 0;
 let timerInterval;
 let isRunning;
 
-start.addEventListener('click', (e) => {
+start.addEventListener('click', () => {
     if(isRunning) {
         throw new Error('Stopwatch has already started')
     }
@@ -23,9 +24,10 @@ start.addEventListener('click', (e) => {
 })
 
 lap.addEventListener('click', () => {
-    if (timer.innerHTML != '00:00:00') {
-        const li = document.createElement('li');
-
+    if (timer.innerHTML !== '00:00:00') {
+        let li = document.createElement('li');
+        li.innerText = displayTimer(convertTimeToString(elapsedTime));
+        lapDisplay.appendChild(li);
     }
 })
 
@@ -38,6 +40,7 @@ reset.addEventListener('click', () => {
     clearInterval(timerInterval);
     displayTimer('00:00:00');
     elapsedTime = 0;
+    lapDisplay.innerHTML = '';
 })
 
 function displayTimer(time) {
