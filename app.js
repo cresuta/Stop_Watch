@@ -26,7 +26,7 @@ start.addEventListener('click', () => {
 lap.addEventListener('click', () => {
     if (timer.innerHTML !== '00:00:00') {
         let li = document.createElement('li');
-        li.innerText = displayTimer(convertTimeToString(elapsedTime));
+        li.innerText = timer.innerHTML
         lapDisplay.appendChild(li);
     }
 })
